@@ -17,30 +17,30 @@ All exported functions are documented. Some Amino registered TypeScript interfac
 
 ### Install
 
-Please note that the NPM package name is `@tendermint/amino-js` rather than `@cosmos/amino-js`.
+Please note that the NPM package name is `@terra-project/amino-js` rather than `@tendermint/amino-js`.
 
 ##### Yarn
 ```shell
-yarn add @tendermint/amino-js
+yarn add @terra-project/amino-js
 ```
 
 ##### NPM
 ```shell
-npm install @tendermint/amino-js
+npm install @terra-project/amino-js
 ```
 
 ### Usage
 
 Encoding decoding of basic values:
 ```js
-import { encodeString, decodeString } from '@tendermint/amino-js';
+import { encodeString, decodeString } from '@terra-project/amino-js';
 decodeString(encodeString('hello world'));
 // [ "hello world", 12 ]
 ```
 
 Encoding/decoding of registered types:
 ```js
-import { marshalTx, unmarshalTx } from '@tendermint/amino-js';
+import { marshalTx, unmarshalTx } from '@terra-project/amino-js';
 
 const tx = {
    'type':  'auth/StdTx',
@@ -48,8 +48,8 @@ const tx = {
        'msg':        [{
            'type':  'pay/MsgSend',
            'value': {
-               'from_address': 'cosmos1h806c7khnvmjlywdrkdgk2vrayy2mmvf9rxk2r',
-               'to_address':   'cosmos1z7g5w84ynmjyg0kqpahdjqpj7yq34v3suckp0e',
+               'from_address': 'terra1h806c7khnvmjlywdrkdgk2vrayy2mmvfr8ukgr',
+               'to_address':   'terra1z7g5w84ynmjyg0kqpahdjqpj7yq34v3s6uvpde',
                'amount':       [{
                    'denom':  'uatom',
                    'amount': '11657995'
