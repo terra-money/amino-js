@@ -8,7 +8,7 @@ const tx = {
         'msg':        [{
             'type':  'market/MsgSwap',
             'value': {
-                'trader': 'cosmos127ve5ay2xdn7q2fcu4xu8870wlnww845pv6ten',
+                'trader': 'terra127ve5ay2xdn7q2fcu4xu8870wlnww8458gqtmn',
                 'offer_coin':  {
                     'denom': 'uluna',
                     'amount': '1000000',

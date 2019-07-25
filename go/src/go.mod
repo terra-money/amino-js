@@ -5,6 +5,7 @@ go 1.12
 require (
 	github.com/cosmos/amino-js/go/extensions v0.0.0
 	github.com/cosmos/amino-js/go/lib v0.0.0
+	github.com/cosmos/cosmos-sdk v0.35.0
 	github.com/tendermint/go-amino v0.15.0
 )
 

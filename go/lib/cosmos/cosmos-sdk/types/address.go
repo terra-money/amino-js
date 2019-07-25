@@ -14,18 +14,18 @@ import (
 )
 
 const (
-	AddrLen = 20
-	Bech32MainPrefix = "cosmos"
-	PrefixValidator = "val"
-	PrefixConsensus = "cons"
-	PrefixPublic = "pub"
-	PrefixOperator = "oper"
-	Bech32PrefixAccAddr = Bech32MainPrefix
-	Bech32PrefixAccPub = Bech32MainPrefix + PrefixPublic
-	Bech32PrefixValAddr = Bech32MainPrefix + PrefixValidator + PrefixOperator
-	Bech32PrefixValPub = Bech32MainPrefix + PrefixValidator + PrefixOperator + PrefixPublic
+	AddrLen              = 20
+	Bech32MainPrefix     = "terra"
+	PrefixValidator      = "val"
+	PrefixConsensus      = "cons"
+	PrefixPublic         = "pub"
+	PrefixOperator       = "oper"
+	Bech32PrefixAccAddr  = Bech32MainPrefix
+	Bech32PrefixAccPub   = Bech32MainPrefix + PrefixPublic
+	Bech32PrefixValAddr  = Bech32MainPrefix + PrefixValidator + PrefixOperator
+	Bech32PrefixValPub   = Bech32MainPrefix + PrefixValidator + PrefixOperator + PrefixPublic
 	Bech32PrefixConsAddr = Bech32MainPrefix + PrefixValidator + PrefixConsensus
-	Bech32PrefixConsPub = Bech32MainPrefix + PrefixValidator + PrefixConsensus + PrefixPublic
+	Bech32PrefixConsPub  = Bech32MainPrefix + PrefixValidator + PrefixConsensus + PrefixPublic
 )
 
 type Address interface {

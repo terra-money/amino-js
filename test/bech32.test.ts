@@ -1,7 +1,7 @@
 import * as Amino from '../';
 
-const knownBech = 'cosmos164z7wwzv84h4hwn6rvjjkns6j4ht43jv9e3ljy';
-const knownHRP  = 'cosmos';
+const knownBech = 'terra164z7wwzv84h4hwn6rvjjkns6j4ht43jvratlsy';
+const knownHRP  = 'terra';
 const knownData = [
     213,
     69,

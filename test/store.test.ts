@@ -10,8 +10,8 @@ const tx = {
         'msg':        [{
             'type':  'pay/MsgSend',
             'value': {
-                'from_address': 'cosmos1h806c7khnvmjlywdrkdgk2vrayy2mmvf9rxk2r',
-                'to_address':   'cosmos1z7g5w84ynmjyg0kqpahdjqpj7yq34v3suckp0e',
+                'from_address': 'terra1h806c7khnvmjlywdrkdgk2vrayy2mmvfr8ukgr',
+                'to_address':   'terra1z7g5w84ynmjyg0kqpahdjqpj7yq34v3s6uvpde',
                 'amount':       [{
                     'denom':  'uatom',
                     'amount': '11657995'
@@ -47,7 +47,7 @@ const account = {
     'value': {
         'BaseVestingAccount': {
             'BaseAccount':       {
-                'address':        'cosmos164z7wwzv84h4hwn6rvjjkns6j4ht43jv9e3ljy',
+                'address':        'terra164z7wwzv84h4hwn6rvjjkns6j4ht43jvratlsy',
                 'coins':          [{
                     'denom':  'uatom',
                     'amount': '179848'
