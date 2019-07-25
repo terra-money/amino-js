@@ -46,7 +46,7 @@ const tx = {
    'type':  'auth/StdTx',
    'value': {
        'msg':        [{
-           'type':  'cosmos-sdk/MsgSend',
+           'type':  'pay/MsgSend',
            'value': {
                'from_address': 'cosmos1h806c7khnvmjlywdrkdgk2vrayy2mmvf9rxk2r',
                'to_address':   'cosmos1z7g5w84ynmjyg0kqpahdjqpj7yq34v3suckp0e',

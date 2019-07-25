@@ -1,15 +1,19 @@
 import * as Amino from '../';
 
-const txData = 'lwHwYl3uCh+ISBeyChRXmZp0ijNn4Ck45U3Dn8935ucetBIDeHl6EgQQwIQ9GmoKJuta6YchAzLLqrGgOXVl8+8m3O9tiZdKb4+gQzLloFrMRVmRbBsXEkCeEfjb2IvhUPcricANV/yyMPst0/O64zndCsGH3ywQ0izw1Sk8k1NRD3PFAWJ1YRoUUGM/XbHvh+k7GzKnCZbn';
+const txData = 'qgHwYl3uCjIrTd2SChRXmZp0ijNn4Ck45U3Dn8935ucetBIQCgV1bHVuYRIHMTAwMDAwMBoEdWtydxIEEMCEPRpqCibrWumHIQMyy6qxoDl1ZfPvJtzvbYmXSm+PoEMy5aBazEVZkWwbFxJAnhH429iL4VD3K4nADVf8sjD7LdPzuuM53QrBh98sENIs8NUpPJNTUQ9zxQFidWEaFFBjP12x74fpOxsypwmW5w==';
 
 const tx = {
     'type':  'auth/StdTx',
     'value': {
         'msg':        [{
-            'type':  'microtick/CreateMarket',
+            'type':  'market/MsgSwap',
             'value': {
-                'Account': 'cosmos127ve5ay2xdn7q2fcu4xu8870wlnww845pv6ten',
-                'Market':  'xyz'
+                'trader': 'cosmos127ve5ay2xdn7q2fcu4xu8870wlnww845pv6ten',
+                'offer_coin':  {
+                    'denom': 'uluna',
+                    'amount': '1000000',
+                },
+                'ask_denom':   'ukrw',
             }
         }],
         'fee':        {
