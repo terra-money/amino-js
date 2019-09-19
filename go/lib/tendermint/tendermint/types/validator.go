@@ -1,7 +1,7 @@
 package types
 
 import (
-	"github.com/cosmos/amino-js/go/lib/tendermint/tendermint/crypto"
+	"github.com/terra-project/amino-js/go/lib/tendermint/tendermint/crypto"
 )
 
 type Validator struct {

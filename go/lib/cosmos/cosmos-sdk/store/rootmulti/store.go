@@ -1,7 +1,7 @@
 package rootmulti
 
 import (
-	"github.com/cosmos/amino-js/go/lib/cosmos/cosmos-sdk/store/types"
+	"github.com/terra-project/amino-js/go/lib/cosmos/cosmos-sdk/store/types"
 )
 
 type storeInfo struct {

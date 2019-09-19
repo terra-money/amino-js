@@ -1,7 +1,7 @@
 package types
 
 import (
-	cmn "github.com/cosmos/amino-js/go/lib/tendermint/tendermint/libs/common"
+	cmn "github.com/terra-project/amino-js/go/lib/tendermint/tendermint/libs/common"
 )
 
 type CodeType uint32

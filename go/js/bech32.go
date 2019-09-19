@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/cosmos/amino-js/go/src"
+	"github.com/terra-project/amino-js/go/src"
 )
 
 func EncodeBech32 (hrp string, data []byte) (bech string) {

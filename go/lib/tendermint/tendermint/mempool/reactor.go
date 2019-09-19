@@ -1,7 +1,7 @@
 package mempool
 
 import (
-	"github.com/cosmos/amino-js/go/lib/tendermint/tendermint/types"
+	"github.com/terra-project/amino-js/go/lib/tendermint/tendermint/types"
 )
 
 type PeerState interface {

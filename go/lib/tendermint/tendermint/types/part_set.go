@@ -2,8 +2,8 @@ package types
 
 import (
 	"bytes"
-	"github.com/cosmos/amino-js/go/lib/tendermint/tendermint/crypto/merkle"
-	cmn "github.com/cosmos/amino-js/go/lib/tendermint/tendermint/libs/common"
+	"github.com/terra-project/amino-js/go/lib/tendermint/tendermint/crypto/merkle"
+	cmn "github.com/terra-project/amino-js/go/lib/tendermint/tendermint/libs/common"
 )
 
 type Part struct {

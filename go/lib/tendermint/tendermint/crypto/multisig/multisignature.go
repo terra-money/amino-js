@@ -1,7 +1,7 @@
 package multisig
 
 import (
-	"github.com/cosmos/amino-js/go/lib/tendermint/tendermint/crypto/multisig/bitarray"
+	"github.com/terra-project/amino-js/go/lib/tendermint/tendermint/crypto/multisig/bitarray"
 )
 
 type Multisignature struct {

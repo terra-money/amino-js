@@ -1,7 +1,7 @@
 package types
 
 import (
-	abci "github.com/cosmos/amino-js/go/lib/tendermint/tendermint/abci/types"
+	abci "github.com/terra-project/amino-js/go/lib/tendermint/tendermint/abci/types"
 )
 
 type TMEventData interface {

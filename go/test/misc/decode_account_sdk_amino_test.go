@@ -18,12 +18,12 @@ func TestDecodeAccountSdkAmino(t *testing.T) {
 	cdc := amino.NewCodec()
 
 	cdc.RegisterInterface((*auth.Account)(nil), nil)
-	cdc.RegisterConcrete(&auth.BaseAccount{}, "auth/Account", nil)
+	cdc.RegisterConcrete(&auth.BaseAccount{}, "core/Account", nil)
 	cdc.RegisterInterface((*auth.VestingAccount)(nil), nil)
-	cdc.RegisterConcrete(&auth.BaseVestingAccount{}, "auth/BaseVestingAccount", nil)
-	cdc.RegisterConcrete(&auth.ContinuousVestingAccount{}, "auth/ContinuousVestingAccount", nil)
-	cdc.RegisterConcrete(&auth.DelayedVestingAccount{}, "auth/DelayedVestingAccount", nil)
-	cdc.RegisterConcrete(auth.StdTx{}, "auth/StdTx", nil)
+	cdc.RegisterConcrete(&auth.BaseVestingAccount{}, "core/BaseVestingAccount", nil)
+	cdc.RegisterConcrete(&auth.ContinuousVestingAccount{}, "core/ContinuousVestingAccount", nil)
+	cdc.RegisterConcrete(&auth.DelayedVestingAccount{}, "core/DelayedVestingAccount", nil)
+	cdc.RegisterConcrete(auth.StdTx{}, "core/StdTx", nil)
 	cryptoAmino.RegisterAmino(cdc)
 
 	var account1 auth.Account

@@ -1,8 +1,8 @@
 package src
 
 import (
-	"github.com/cosmos/amino-js/go/extensions"
-	"github.com/cosmos/amino-js/go/lib"
+	"github.com/terra-project/amino-js/go/extensions"
+	"github.com/terra-project/amino-js/go/lib"
 	"github.com/tendermint/go-amino"
 )
 

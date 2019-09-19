@@ -17,8 +17,5 @@ func RegisterCodec(codec *amino.Codec) {
 
 	codec.RegisterConcrete(&Schedule{}, TerraSchedule, nil)
 	codec.RegisterConcrete(&VestingSchedule{}, TerraVestingSchedule, nil)
-	codec.RegisterConcrete(&BaseGradedVestingAccount{}, TerraBaseGradedVestingAccount, nil)
-	codec.RegisterConcrete(&LazySchedule{}, TerraLazySchedule, nil)
-	codec.RegisterConcrete(&LazyVestingSchedule{}, TerraLazyVestingSchedule, nil)
 	codec.RegisterConcrete(&BaseLazyGradedVestingAccount{}, TerraBaseLazyGradedVestingAccount, nil)
 }

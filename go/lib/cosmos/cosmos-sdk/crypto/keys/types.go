@@ -1,8 +1,8 @@
 package keys
 
 import (
-	"github.com/cosmos/amino-js/go/lib/cosmos/cosmos-sdk/crypto/keys/hd"
-	"github.com/cosmos/amino-js/go/lib/tendermint/tendermint/crypto"
+	"github.com/terra-project/amino-js/go/lib/cosmos/cosmos-sdk/crypto/keys/hd"
+	"github.com/terra-project/amino-js/go/lib/tendermint/tendermint/crypto"
 )
 
 type Info interface {

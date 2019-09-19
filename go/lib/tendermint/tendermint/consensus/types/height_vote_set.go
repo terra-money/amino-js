@@ -1,8 +1,8 @@
 package types
 
 import (
-	"github.com/cosmos/amino-js/go/lib/tendermint/tendermint/p2p"
-	"github.com/cosmos/amino-js/go/lib/tendermint/tendermint/types"
+	"github.com/terra-project/amino-js/go/lib/tendermint/tendermint/p2p"
+	"github.com/terra-project/amino-js/go/lib/tendermint/tendermint/types"
 )
 
 type RoundVoteSet struct {

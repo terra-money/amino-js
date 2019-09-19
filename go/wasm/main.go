@@ -3,7 +3,7 @@
 package main
 
 import (
-	"github.com/cosmos/amino-js/go/src"
+	"github.com/terra-project/amino-js/go/src"
 	"syscall/js"
 )
 
