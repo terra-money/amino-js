@@ -5,10 +5,10 @@ import * as Amino from '../';
 const txData = '1gHwYl3uCkNviI6WChS536x615s3L5HNHZqLKYPpCK3tiRIUF5FHHqSe5EQ+wA9u2QAy8QEasjAaEQoFdWF0b20SCDExNjU3OTk1EhMKDQoFdWF0b20SBDUwMDAQwJoMGmoKJuta6YchAtQaCqFnshaZQp6rIkvAPyzThvCvXSDO+9AzbxVErqJPEkDWdRwgfQItPT+dDSYFMOtPqQwbbQ1j8+wfs/aBzhulg0YsRiMGZ1Z69dQmi5IT/0D/rRAb1xh6rJN7mQUN4g/FIgoxMTIyNjcyNzU0';
 
 const tx = {
-    'type':  'auth/StdTx',
+    'type':  'core/StdTx',
     'value': {
         'msg':        [{
-            'type':  'pay/MsgSend',
+            'type':  'bank/MsgSend',
             'value': {
                 'from_address': 'terra1h806c7khnvmjlywdrkdgk2vrayy2mmvfr8ukgr',
                 'to_address':   'terra1z7g5w84ynmjyg0kqpahdjqpj7yq34v3s6uvpde',
@@ -43,7 +43,7 @@ const iavlValueOpData       = 'hQUKggUKKwggEPRAGJeoFiIg42ukaK0uAk7ILChDKa2MAFQFC
 const multiStoreProofOpData = 'zAMKyQMKMgoGcGFyYW1zEigKJgifqBYSILQQeWv+l/f4sz0XrMFwYl7ciA8wVVpJEbi3qfTDklx3CjMKB3N0YWtpbmcSKAomCJ+oFhIgl/W+J7W+84XjsUkoee2UoG25z2Qoa8+4WZ797IQuDM8KLwoDZ292EigKJgifqBYSIKhUGp0K9m8bBvnaR4CrzZc2ti1V53v4Rejr0ywkKuDkCi8KA2ZlZRIoCiYIn6gWEiC/jsXcQM4jKoOPfqC3RswEkIwyvKw7goy7g0Mst/SeHAowCgRtaW50EigKJgifqBYSIKICvSgOiooDDqybo7DaN/Kd2rxGEIWKMdEzXEwkWGD7CjEKBWRpc3RyEigKJgifqBYSIOBGzTXH2fB/JSNtnb0g4zNmhOvy3RnNfghic7/0l2CsCjQKCHNsYXNoaW5nEigKJgifqBYSIH0/FymzrPVSQuE5r0kkwuRvn44z/1DK5ZB8JDdWvxSrCjAKBG1haW4SKAomCJ+oFhIgdNv/3PjtbBb+R4S4HMizVHGFeiSOKE2MaXS6k6v0NW0KLwoDYWNjEigKJgifqBYSIBKIj7ZT7YN1dcOgCKxAVRqYlJKkZ/pukCPpEPhfwrn5';
 
 const account = {
-    'type':  'auth/DelayedVestingAccount',
+    'type':  'core/DelayedVestingAccount',
     'value': {
         'BaseVestingAccount': {
             'BaseAccount':       {

@@ -3,7 +3,7 @@ import * as Amino from '../';
 const txData = 'qgHwYl3uCjIrTd2SChRXmZp0ijNn4Ck45U3Dn8935ucetBIQCgV1bHVuYRIHMTAwMDAwMBoEdWtydxIEEMCEPRpqCibrWumHIQMyy6qxoDl1ZfPvJtzvbYmXSm+PoEMy5aBazEVZkWwbFxJAnhH429iL4VD3K4nADVf8sjD7LdPzuuM53QrBh98sENIs8NUpPJNTUQ9zxQFidWEaFFBjP12x74fpOxsypwmW5w==';
 
 const tx = {
-    'type':  'auth/StdTx',
+    'type':  'core/StdTx',
     'value': {
         'msg':        [{
             'type':  'market/MsgSwap',

@@ -1,8 +1,8 @@
 package extensions
 
 import (
-	sdk "github.com/terra-project/amino-js/go/lib/cosmos/cosmos-sdk/types"
-	"github.com/terra-project/amino-js/go/lib/cosmos/cosmos-sdk/x/auth"
+	sdk "github.com/cosmos/amino-js/go/lib/cosmos/cosmos-sdk/types"
+	"github.com/cosmos/amino-js/go/lib/cosmos/cosmos-sdk/x/auth"
 )
 
 var _ sdk.Msg = (*MsgSwap)(nil)

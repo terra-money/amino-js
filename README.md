@@ -43,10 +43,10 @@ Encoding/decoding of registered types:
 import { marshalTx, unmarshalTx } from '@terra-project/amino-js';
 
 const tx = {
-   'type':  'auth/StdTx',
+   'type':  'core/StdTx',
    'value': {
        'msg':        [{
-           'type':  'pay/MsgSend',
+           'type':  'bank/MsgSend',
            'value': {
                'from_address': 'terra1h806c7khnvmjlywdrkdgk2vrayy2mmvfr8ukgr',
                'to_address':   'terra1z7g5w84ynmjyg0kqpahdjqpj7yq34v3s6uvpde',

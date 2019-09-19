@@ -1,7 +1,7 @@
 package ibc
 
 import (
-	sdk "github.com/terra-project/amino-js/go/lib/cosmos/cosmos-sdk/types"
+	sdk "github.com/cosmos/amino-js/go/lib/cosmos/cosmos-sdk/types"
 )
 
 type IBCPacket struct {

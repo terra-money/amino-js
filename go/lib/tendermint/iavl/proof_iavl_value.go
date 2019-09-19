@@ -1,7 +1,7 @@
 package iavl
 
 import (
-	"github.com/terra-project/amino-js/go/lib/tendermint/tendermint/crypto/merkle"
+	"github.com/cosmos/amino-js/go/lib/tendermint/tendermint/crypto/merkle"
 )
 
 const ProofOpIAVLValue = "iavl:v"

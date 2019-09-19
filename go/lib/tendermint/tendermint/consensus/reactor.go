@@ -1,9 +1,9 @@
 package consensus
 
 import (
-	cstypes "github.com/terra-project/amino-js/go/lib/tendermint/tendermint/consensus/types"
-	cmn "github.com/terra-project/amino-js/go/lib/tendermint/tendermint/libs/common"
-	"github.com/terra-project/amino-js/go/lib/tendermint/tendermint/types"
+	cstypes "github.com/cosmos/amino-js/go/lib/tendermint/tendermint/consensus/types"
+	cmn "github.com/cosmos/amino-js/go/lib/tendermint/tendermint/libs/common"
+	"github.com/cosmos/amino-js/go/lib/tendermint/tendermint/types"
 )
 
 type ConsensusMessage interface {

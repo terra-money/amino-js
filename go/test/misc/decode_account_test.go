@@ -2,7 +2,7 @@ package misc
 
 import (
 	"encoding/base64"
-	"github.com/terra-project/amino-js/go/src"
+	"github.com/cosmos/amino-js/go/src"
 	"testing"
 )
 

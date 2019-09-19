@@ -1,8 +1,8 @@
 package auth
 
 import (
-	sdk "github.com/terra-project/amino-js/go/lib/cosmos/cosmos-sdk/types"
-	"github.com/terra-project/amino-js/go/lib/tendermint/tendermint/crypto"
+	sdk "github.com/cosmos/amino-js/go/lib/cosmos/cosmos-sdk/types"
+	"github.com/cosmos/amino-js/go/lib/tendermint/tendermint/crypto"
 )
 
 type Account interface {

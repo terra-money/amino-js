@@ -8,9 +8,9 @@ describe('meta', () => {
             expect(prefixBytes).toBeBytes([66, 152, 252, 28]);
         });
 
-        it('gets disfix for `"auth/StdTx"`', () => {
-            const [disambBytes, prefixBytes] = Amino.nameToDisfix('auth/StdTx');
-            expect(disambBytes).toBeBytes([142, 254, 71]);
+        it('gets disfix for `"core/StdTx"`', () => {
+            const [disambBytes, prefixBytes] = Amino.nameToDisfix('core/StdTx');
+            expect(disambBytes).toBeBytes([202, 254, 71]);
             expect(prefixBytes).toBeBytes([240, 98, 93, 238]);
         });
     });

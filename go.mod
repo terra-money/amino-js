@@ -1,4 +1,4 @@
-module github.com/terra-project/amino-js
+module github.com/cosmos/amino-js
 
 go 1.12
 
