@@ -10,8 +10,8 @@ describe('meta', () => {
 
         it('gets disfix for `"core/StdTx"`', () => {
             const [disambBytes, prefixBytes] = Amino.nameToDisfix('core/StdTx');
-            expect(disambBytes).toBeBytes([202, 254, 71]);
-            expect(prefixBytes).toBeBytes([240, 98, 93, 238]);
+            expect(disambBytes).toBeBytes([202, 97, 92]);
+            expect(prefixBytes).toBeBytes([198, 193, 2, 63]);
         });
     });
 
