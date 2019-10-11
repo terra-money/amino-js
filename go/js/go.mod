@@ -1,10 +1,10 @@
 module github.com/cosmos/amino-js/go/js
 
-go 1.12
+go 1.13
 
 require (
 	github.com/cosmos/amino-js/go/src v0.0.0
-	github.com/gopherjs/gopherjs v0.0.0-20190915194858-d3ddacdb130f
+	github.com/gopherjs/gopherjs v0.0.0-20190812055313-0a3de5b74c85
 	github.com/tendermint/go-amino v0.15.0
 )
 

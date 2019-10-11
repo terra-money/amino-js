@@ -16,7 +16,7 @@ type Schedule struct {
 	Ratio     sdk.Dec `json:"ratio"`
 }
 
-type LazyVestingSchedule struct {
+type VestingSchedule struct {
 	Denom     string     `json:"denom"`
 	Schedules []Schedule `json:"schedules"` // maps blocktime to percentage vested. Should sum to 1.
 }
@@ -24,7 +24,7 @@ type LazyVestingSchedule struct {
 type BaseLazyGradedVestingAccount struct {
 	*auth.BaseVestingAccount
 
-	LazyVestingSchedules []LazyVestingSchedule `json:"vesting_schedules"`
+	VestingSchedules []VestingSchedule `json:"vesting_schedules"`
 }
 
 type MsgSwap struct {
