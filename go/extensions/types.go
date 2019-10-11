@@ -10,37 +10,21 @@ var _ sdk.Msg = (*MsgPricePrevote)(nil)
 var _ sdk.Msg = (*MsgPriceVote)(nil)
 var _ sdk.Msg = (*MsgDelegateFeederPermission)(nil)
 
-type LazySchedule struct {
+type Schedule struct {
 	StartTime int64   `json:"start_time"`
 	EndTime   int64   `json:"end_time"`
 	Ratio     sdk.Dec `json:"ratio"`
 }
 
 type LazyVestingSchedule struct {
-	Denom         string         `json:"denom"`
-	LazySchedules []LazySchedule `json:"schedules"` // maps blocktime to percentage vested. Should sum to 1.
+	Denom     string     `json:"denom"`
+	Schedules []Schedule `json:"schedules"` // maps blocktime to percentage vested. Should sum to 1.
 }
 
 type BaseLazyGradedVestingAccount struct {
 	*auth.BaseVestingAccount
 
-	LazyVestingSchedules []LazyVestingSchedule `json:"vesting_lazy_schedules"`
-}
-
-type Schedule struct {
-	Cliff int64   `json:"cliff"`
-	Ratio sdk.Dec `json:"ratio"`
-}
-
-type VestingSchedule struct {
-	Denom     string     `json:"denom"`
-	Schedules []Schedule `json:"schedules"` // maps blocktime to percentage vested. Should sum to 1.
-}
-
-type BaseGradedVestingAccount struct {
-	*auth.BaseVestingAccount
-
-	VestingSchedules []VestingSchedule `json:"vesting_schedules"`
+	LazyVestingSchedules []LazyVestingSchedule `json:"vesting_schedules"`
 }
 
 type MsgSwap struct {
@@ -89,9 +73,6 @@ const (
 	TerraMsgPriceVote                 = "oracle/MsgPriceVote"
 	TerraMsgPricePrevote              = "oracle/MsgPricePrevote"
 	TerraMsgDelegateFeederPermission  = "oracle/MsgDelegateFeederPermission"
-	TerraPriceBallot                  = "oracle/PriceBallot"
-	TerraPriceVote                    = "oracle/PriceVote"
-	TerraPricePrevote                 = "oracle/PricePrevote"
 	TerraSchedule                     = "core/Schedule"
 	TerraVestingSchedule              = "core/VestingSchedule"
 	TerraBaseLazyGradedVestingAccount = "core/LazyGradedVestingAccount"
