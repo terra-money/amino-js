@@ -6,9 +6,9 @@ import (
 )
 
 var _ sdk.Msg = (*MsgSwap)(nil)
-var _ sdk.Msg = (*MsgPricePrevote)(nil)
-var _ sdk.Msg = (*MsgPriceVote)(nil)
-var _ sdk.Msg = (*MsgDelegateFeederPermission)(nil)
+var _ sdk.Msg = (*MsgExchangeRatePrevote)(nil)
+var _ sdk.Msg = (*MsgExchangeRateVote)(nil)
+var _ sdk.Msg = (*MsgDelegateFeedConsent)(nil)
 
 type Schedule struct {
 	StartTime int64   `json:"start_time"`
@@ -33,46 +33,31 @@ type MsgSwap struct {
 	AskDenom  string         `json:"ask_denom"`  // Denom of the coin to swap to
 }
 
-type MsgPricePrevote struct {
+type MsgExchangeRatePrevote struct {
 	Hash      string         `json:"hash"` // hex string
 	Denom     string         `json:"denom"`
 	Feeder    sdk.AccAddress `json:"feeder"`
 	Validator sdk.ValAddress `json:"validator"`
 }
 
-type MsgPriceVote struct {
-	Price     sdk.Dec        `json:"price"` // the effective price of Luna in {Denom}
-	Salt      string         `json:"salt"`
-	Denom     string         `json:"denom"`
-	Feeder    sdk.AccAddress `json:"feeder"`
-	Validator sdk.ValAddress `json:"validator"`
+type MsgExchangeRateVote struct {
+	ExchangeRate sdk.Dec        `json:"exchange_rate"` // the effective rate of Luna in {Denom}
+	Salt         string         `json:"salt"`
+	Denom        string         `json:"denom"`
+	Feeder       sdk.AccAddress `json:"feeder"`
+	Validator    sdk.ValAddress `json:"validator"`
 }
 
-type MsgDelegateFeederPermission struct {
-	Operator     sdk.ValAddress `json:"operator"`
-	FeedDelegate sdk.AccAddress `json:"feed_delegate"`
+type MsgDelegateFeedConsent struct {
+	Operator  sdk.ValAddress `json:"operator"`
+	Delegatee sdk.AccAddress `json:"delegatee"`
 }
-
-type PricePrevote struct {
-	Hash        string         `json:"hash"`  // Vote hex hash to protect centralize data source problem
-	Denom       string         `json:"denom"` // Ticker name of target fiat currency
-	Voter       sdk.ValAddress `json:"voter"` // Voter val address
-	SubmitBlock int64          `json:"submit_block"`
-}
-
-type PriceVote struct {
-	Price sdk.Dec        `json:"price"` // Price of Luna in target fiat currency
-	Denom string         `json:"denom"` // Ticker name of target fiat currency
-	Voter sdk.ValAddress `json:"voter"` // voter val address of validator
-}
-
-type PriceBallot []PriceVote
 
 const (
 	TerraMsgSwap                      = "market/MsgSwap"
-	TerraMsgPriceVote                 = "oracle/MsgPriceVote"
-	TerraMsgPricePrevote              = "oracle/MsgPricePrevote"
-	TerraMsgDelegateFeederPermission  = "oracle/MsgDelegateFeederPermission"
+	TerraMsgExchangeRateVote          = "oracle/MsgExchangeRateVote"
+	TerraMsgExchangeRatePrevote       = "oracle/MsgExchangeRatePrevote"
+	TerraMsgDelegateFeedConsent       = "oracle/MsgDelegateFeedConsent"
 	TerraSchedule                     = "core/Schedule"
 	TerraVestingSchedule              = "core/VestingSchedule"
 	TerraBaseLazyGradedVestingAccount = "core/LazyGradedVestingAccount"

@@ -5,9 +5,9 @@ import (
 )
 
 func RegisterCodec(codec *amino.Codec) {
-	codec.RegisterConcrete(MsgPriceVote{}, TerraMsgPriceVote, nil)
-	codec.RegisterConcrete(MsgPricePrevote{}, TerraMsgPricePrevote, nil)
-	codec.RegisterConcrete(MsgDelegateFeederPermission{}, TerraMsgDelegateFeederPermission, nil)
+	codec.RegisterConcrete(MsgExchangeRateVote{}, TerraMsgExchangeRateVote, nil)
+	codec.RegisterConcrete(MsgExchangeRatePrevote{}, TerraMsgExchangeRatePrevote, nil)
+	codec.RegisterConcrete(MsgDelegateFeedConsent{}, TerraMsgDelegateFeedConsent, nil)
 
 	codec.RegisterConcrete(MsgSwap{}, TerraMsgSwap, nil)
 
