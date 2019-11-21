@@ -49,8 +49,8 @@ type MsgExchangeRateVote struct {
 }
 
 type MsgDelegateFeedConsent struct {
-	Operator  sdk.ValAddress `json:"operator"`
-	Delegatee sdk.AccAddress `json:"delegatee"`
+	Operator sdk.ValAddress `json:"operator"`
+	Delegate sdk.AccAddress `json:"delegate"`
 }
 
 const (
