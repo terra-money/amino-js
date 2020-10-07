@@ -23,4 +23,12 @@ func RegisterCodec(codec *amino.Codec) {
 	codec.RegisterConcrete(&Schedule{}, TerraSchedule, nil)
 	codec.RegisterConcrete(&VestingSchedule{}, TerraVestingSchedule, nil)
 	codec.RegisterConcrete(&BaseLazyGradedVestingAccount{}, TerraBaseLazyGradedVestingAccount, nil)
+
+	codec.RegisterConcrete(MsgGrantAuthorization{}, TerraMsgGrantAuthorization, nil)
+	codec.RegisterConcrete(MsgRevokeAuthorization{}, TerraMsgRevokeAuthorization, nil)
+	codec.RegisterConcrete(MsgExecAuthorized{}, TerraMsgExecAuthorized, nil)
+	codec.RegisterConcrete(SendAuthorization{}, TerraSendAuthorization, nil)
+	codec.RegisterConcrete(GenericAuthorization{}, TerraGenericAuthorization, nil)
+
+	codec.RegisterInterface((*Authorization)(nil), nil)
 }

@@ -1,6 +1,8 @@
 package extensions
 
 import (
+	"time"
+
 	sdk "github.com/cosmos/amino-js/go/lib/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/amino-js/go/lib/cosmos/cosmos-sdk/x/auth"
 )
@@ -115,6 +117,36 @@ type MsgUpdateContractOwner struct {
 	Contract sdk.AccAddress `json:"contract" yaml:"contract"`
 }
 
+type MsgGrantAuthorization struct {
+	Granter       sdk.AccAddress `json:"granter"`
+	Grantee       sdk.AccAddress `json:"grantee"`
+	Authorization Authorization  `json:"authorization"`
+	Period        time.Duration  `json:"period"`
+}
+
+type MsgRevokeAuthorization struct {
+	Granter              sdk.AccAddress `json:"granter"`
+	Grantee              sdk.AccAddress `json:"grantee"`
+	AuthorizationMsgType string         `json:"authorization_msg_type"`
+}
+
+type MsgExecAuthorized struct {
+	Grantee sdk.AccAddress `json:"grantee"`
+	Msgs    []sdk.Msg      `json:"msgs"`
+}
+
+type Authorization interface{}
+
+var _ Authorization = (*SendAuthorization)(nil)
+var _ Authorization = (*GenericAuthorization)(nil)
+
+type SendAuthorization struct {
+	SpendLimit sdk.Coins `json:"spend_limit"`
+}
+type GenericAuthorization struct {
+	GrantMsgType string `json:"grant_msg_type"`
+}
+
 const (
 	TerraMsgSwap                         = "market/MsgSwap"
 	TerraMsgSwapSend                     = "market/MsgSwapSend"
@@ -131,4 +163,9 @@ const (
 	TerraMsgExecuteContract              = "wasm/MsgExecuteContract"
 	TerraMsgMigrateContract              = "wasm/MsgMigrateContract"
 	TerraMsgUpdateContractOwner          = "wasm/MsgUpdateContractOwner"
+	TerraMsgGrantAuthorization           = "msgauth/MsgGrantAuthorization"
+	TerraMsgRevokeAuthorization          = "msgauth/MsgRevokeAuthorization"
+	TerraMsgExecAuthorized               = "msgauth/MsgExecAuthorized"
+	TerraSendAuthorization               = "msgauth/SendAuthorization"
+	TerraGenericAuthorization            = "msgauth/GenericAuthorization"
 )
