@@ -23,7 +23,7 @@ const (
 	TerraMsgVote                                 = "gov/MsgVote"
 	TerraTextProposal                            = "gov/TextProposal"
 	TerraSoftwareUpgradeProposal                 = "gov/SoftwareUpgradeProposal"
-	TerraParameterChangeProposal                 = "gov/ParameterChangeProposal"
+	TerraParameterChangeProposal                 = "params/ParameterChangeProposal"
 	TerraMsgIBCTransfer                          = "ibc/MsgIBCTransfer"
 	TerraMsgIBCReceive                           = "ibc/MsgIBCReceive"
 	TerraMsgUnjail                               = "slashing/MsgUnjail"
