@@ -9,34 +9,33 @@
     "publishConfig": {
         "access": "public"
     },
-    "version": "3.0.1",
+    "version": "3.1.0",
     "main": "index.js",
     "types": "index.d.ts",
     "scripts": {
         "build": "webpack --config build --progress --colors --display-error-details",
         "clean": "rm -rf ./dist/*",
         "dirs": "mkdir ./dist",
-        "dist:dev": "yarn clean && yarn go && NODE_ENV=development yarn build",
-        "dist:prod": "yarn clean && yarn go:min && NODE_ENV=production yarn build && yarn gzip",
+        "dist:dev": "npm run clean && npm run go && NODE_ENV=development npm run build",
+        "dist:prod": "npm run clean && npm run go:min && NODE_ENV=production npm run build && npm run gzip",
         "docs": "typedoc src/*.ts src/types/*.ts lib/types.ts",
         "go": "cd go/js && gopherjs build -v -o ../../lib/Amino.js .",
-        "go:min": "yarn go -m",
+        "go:min": "npm run go -m",
         "go:wasm": "cd go/wasm && GOOS=js GOARCH=wasm go build -o ../../dist/Amino.wasm .",
-        "go:watch": "yarn go -w",
+        "go:watch": "npm run go -w",
         "gzip": "gzip -kf ./dist/*.{js,map}",
         "gzip:wasm": "gzip -kf ./dist/*.wasm",
         "lint": "eslint --ext .ts,.js .",
-        "nuke": "rm -rf **/node_modules yarn.lock",
-        "prepare": "tsc && yarn lint && yarn dist:prod && yarn test",
-        "reset": "yarn nuke && yarn",
-        "setup": "yarn dirs && yarn dist:dev",
+        "nuke": "rm -rf **/node_modules npm run.lock",
+        "prepare": "tsc && npm run lint && npm run dist:prod && npm run test",
+        "reset": "npm run nuke && npm run",
+        "setup": "npm run dirs && npm run dist:dev",
         "server": "go run server.go",
         "static": "cp ./static/* ./dist/",
         "test": "jest --config ./test/jest.config.json",
         "wasm:exec": "cp \"$(go env GOROOT)/misc/wasm/wasm_exec.js\" ./dist/",
-        "watch": "yarn build --watch"
+        "watch": "npm run build --watch"
     },
-    "dependencies": {},
     "devDependencies": {
         "@babel/core": "7.5.5",
         "@babel/preset-env": "7.5.5",
@@ -68,6 +67,6 @@
         "package.json",
         "README.md",
         "tsconfig.json",
-        "yarn.lock"
+        "package-lock.json"
     ]
 }
