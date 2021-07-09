@@ -17,30 +17,30 @@ All exported functions are documented. Some Amino registered TypeScript interfac
 
 ### Install
 
-Please note that the NPM package name is `@terra-project/amino-js` rather than `@tendermint/amino-js`.
+Please note that the NPM package name is `@terra-money/amino-js` rather than `@tendermint/amino-js`.
 
 ##### Yarn
 ```shell
-yarn add @terra-project/amino-js
+yarn add @terra-money/amino-js
 ```
 
 ##### NPM
 ```shell
-npm install @terra-project/amino-js
+npm install @terra-money/amino-js
 ```
 
 ### Usage
 
 Encoding decoding of basic values:
 ```js
-import { encodeString, decodeString } from '@terra-project/amino-js';
+import { encodeString, decodeString } from '@terra-money/amino-js';
 decodeString(encodeString('hello world'));
 // [ "hello world", 12 ]
 ```
 
 Encoding/decoding of registered types:
 ```js
-import { marshalTx, unmarshalTx } from '@terra-project/amino-js';
+import { marshalTx, unmarshalTx } from '@terra-money/amino-js';
 
 const tx = {
    'type':  'core/StdTx',
