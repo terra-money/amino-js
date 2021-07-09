@@ -5,11 +5,12 @@ import (
 )
 
 type Vote struct {
-	Voter      sdk.AccAddress `json:"voter"`       //  address of the voter
-	ProposalID uint64         `json:"proposal_id"` //  proposalID of the proposal
-	Option     VoteOption     `json:"option"`      //  option from OptionSet chosen by the voter
+	Voter      sdk.AccAddress       `json:"voter"`                                                                                          //  address of the voter
+	ProposalID uint64               `json:"proposal_id"`                                                                                    //  proposalID of the proposal
+	Option     VoteOption           `protobuf:"varint,3,opt,name=option,proto3,enum=cosmos.gov.v1beta1.VoteOption" json:"option,omitempty"` // Deprecated: Do not use.
+	Options    []WeightedVoteOption `protobuf:"bytes,4,rep,name=options,proto3" json:"options"`
 }
 
 type Votes []Vote
 
-type VoteOption byte
+type VoteOption int32

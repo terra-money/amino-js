@@ -54,42 +54,26 @@ func (p Proposals) String() string {
 }
 
 type (
-	ProposalQueue []uint64
-	ProposalStatus byte
+	ProposalQueue  []uint64
+	ProposalStatus int32
 )
 
-const (
-	StatusNil           ProposalStatus = 0x00
-	StatusDepositPeriod ProposalStatus = 0x01
-	StatusVotingPeriod  ProposalStatus = 0x02
-	StatusPassed        ProposalStatus = 0x03
-	StatusRejected      ProposalStatus = 0x04
-	StatusFailed        ProposalStatus = 0x05
-)
+var ProposalStatus_name = map[int32]string{
+	0: "PROPOSAL_STATUS_UNSPECIFIED",
+	1: "PROPOSAL_STATUS_DEPOSIT_PERIOD",
+	2: "PROPOSAL_STATUS_VOTING_PERIOD",
+	3: "PROPOSAL_STATUS_PASSED",
+	4: "PROPOSAL_STATUS_REJECTED",
+	5: "PROPOSAL_STATUS_FAILED",
+}
 
-func ProposalStatusFromString(str string) (ProposalStatus, error) {
-	switch str {
-	case "DepositPeriod":
-		return StatusDepositPeriod, nil
-
-	case "VotingPeriod":
-		return StatusVotingPeriod, nil
-
-	case "Passed":
-		return StatusPassed, nil
-
-	case "Rejected":
-		return StatusRejected, nil
-
-	case "Failed":
-		return StatusFailed, nil
-
-	case "":
-		return StatusNil, nil
-
-	default:
-		return ProposalStatus(0xff), fmt.Errorf("'%s' is not a valid proposal status", str)
-	}
+var ProposalStatus_value = map[string]int32{
+	"PROPOSAL_STATUS_UNSPECIFIED":    0,
+	"PROPOSAL_STATUS_DEPOSIT_PERIOD": 1,
+	"PROPOSAL_STATUS_VOTING_PERIOD":  2,
+	"PROPOSAL_STATUS_PASSED":         3,
+	"PROPOSAL_STATUS_REJECTED":       4,
+	"PROPOSAL_STATUS_FAILED":         5,
 }
 
 func (status ProposalStatus) Marshal() ([]byte, error) {
@@ -112,35 +96,17 @@ func (status *ProposalStatus) UnmarshalJSON(data []byte) error {
 		return err
 	}
 
-	bz2, err := ProposalStatusFromString(s)
-	if err != nil {
-		return err
+	stat, ok := ProposalStatus_value[s]
+	if !ok {
+		return fmt.Errorf("'%s' is not a valid proposal status", s)
 	}
 
-	*status = bz2
+	*status = ProposalStatus(stat)
 	return nil
 }
 
 func (status ProposalStatus) String() string {
-	switch status {
-	case StatusDepositPeriod:
-		return "DepositPeriod"
-
-	case StatusVotingPeriod:
-		return "VotingPeriod"
-
-	case StatusPassed:
-		return "Passed"
-
-	case StatusRejected:
-		return "Rejected"
-
-	case StatusFailed:
-		return "Failed"
-
-	default:
-		return ""
-	}
+	return ProposalStatus_name[int32(status)]
 }
 
 type TallyResult struct {
@@ -170,9 +136,9 @@ type TextProposal struct {
 
 var _ Content = TextProposal{}
 
-func (tp TextProposal) GetTitle() string         { return tp.Title }
-func (tp TextProposal) GetDescription() string   { return tp.Description }
-func (tp TextProposal) ProposalType() string     { return ProposalTypeText }
+func (tp TextProposal) GetTitle() string       { return tp.Title }
+func (tp TextProposal) GetDescription() string { return tp.Description }
+func (tp TextProposal) ProposalType() string   { return ProposalTypeText }
 
 func (tp TextProposal) String() string {
 	return fmt.Sprintf(`Text Proposal:

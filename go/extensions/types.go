@@ -9,8 +9,6 @@ import (
 
 var _ sdk.Msg = (*MsgSwap)(nil)
 var _ sdk.Msg = (*MsgSwapSend)(nil)
-var _ sdk.Msg = (*MsgExchangeRatePrevote)(nil)
-var _ sdk.Msg = (*MsgExchangeRateVote)(nil)
 var _ sdk.Msg = (*MsgAggregateExchangeRatePrevote)(nil)
 var _ sdk.Msg = (*MsgAggregateExchangeRateVote)(nil)
 var _ sdk.Msg = (*MsgDelegateFeedConsent)(nil)
@@ -18,7 +16,8 @@ var _ sdk.Msg = (*MsgStoreCode)(nil)
 var _ sdk.Msg = (*MsgInstantiateContract)(nil)
 var _ sdk.Msg = (*MsgExecuteContract)(nil)
 var _ sdk.Msg = (*MsgMigrateContract)(nil)
-var _ sdk.Msg = (*MsgUpdateContractOwner)(nil)
+var _ sdk.Msg = (*MsgUpdateContractAdmin)(nil)
+var _ sdk.Msg = (*MsgClearContractAdmin)(nil)
 
 type Schedule struct {
 	StartTime int64   `json:"start_time"`
@@ -50,21 +49,6 @@ type MsgSwapSend struct {
 	AskDenom    string         `json:"ask_denom" yaml:"ask_denom"`       // Denom of the coin to swap to
 }
 
-type MsgExchangeRatePrevote struct {
-	Hash      string         `json:"hash"` // hex string
-	Denom     string         `json:"denom"`
-	Feeder    sdk.AccAddress `json:"feeder"`
-	Validator sdk.ValAddress `json:"validator"`
-}
-
-type MsgExchangeRateVote struct {
-	ExchangeRate sdk.Dec        `json:"exchange_rate"` // the effective rate of Luna in {Denom}
-	Salt         string         `json:"salt"`
-	Denom        string         `json:"denom"`
-	Feeder       sdk.AccAddress `json:"feeder"`
-	Validator    sdk.ValAddress `json:"validator"`
-}
-
 type MsgAggregateExchangeRatePrevote struct {
 	Hash      string         `json:"hash" yaml:"hash"`
 	Feeder    sdk.AccAddress `json:"feeder" yaml:"feeder"`
@@ -90,11 +74,11 @@ type MsgStoreCode struct {
 }
 
 type MsgInstantiateContract struct {
-	Owner      sdk.AccAddress `json:"owner" yaml:"owner"`
-	CodeID     uint64         `json:"code_id" yaml:"code_id"`
-	InitMsg    string         `json:"init_msg" yaml:"init_msg"`
-	InitCoins  sdk.Coins      `json:"init_coins" yaml:"init_coins"`
-	Migratable bool           `json:"migratable" yaml:"migratable"`
+	Sender    sdk.AccAddress `json:"sender" yaml:"sender"`
+	Admin     sdk.AccAddress `json:"admin,omitempty" yaml:"admin,omitempty"`
+	CodeID    uint64         `json:"code_id" yaml:"code_id"`
+	InitMsg   string         `json:"init_msg" yaml:"init_msg"`
+	InitCoins sdk.Coins      `json:"init_coins" yaml:"init_coins"`
 }
 
 type MsgExecuteContract struct {
@@ -105,29 +89,33 @@ type MsgExecuteContract struct {
 }
 
 type MsgMigrateContract struct {
-	Owner      sdk.AccAddress `json:"owner" yaml:"owner"`
+	Admin      sdk.AccAddress `json:"admin" yaml:"admin"`
 	Contract   sdk.AccAddress `json:"contract" yaml:"contract"`
 	NewCodeID  uint64         `json:"new_code_id" yaml:"new_code_id"`
 	MigrateMsg string         `json:"migrate_msg" yaml:"migrate_msg"`
 }
 
-type MsgUpdateContractOwner struct {
-	Owner    sdk.AccAddress `json:"owner" yaml:"owner"`
-	NewOwner sdk.AccAddress `json:"new_owner" yaml:"new_owner"`
+type MsgUpdateContractAdmin struct {
+	Admin    sdk.AccAddress `json:"admin" yaml:"admin"`
+	NewAdmin sdk.AccAddress `json:"new_admin" yaml:"new_admin"`
+	Contract sdk.AccAddress `json:"contract" yaml:"contract"`
+}
+
+type MsgClearContractAdmin struct {
+	Admin    sdk.AccAddress `json:"admin" yaml:"admin"`
 	Contract sdk.AccAddress `json:"contract" yaml:"contract"`
 }
 
 type MsgGrantAuthorization struct {
-	Granter       sdk.AccAddress `json:"granter"`
-	Grantee       sdk.AccAddress `json:"grantee"`
-	Authorization Authorization  `json:"authorization"`
-	Period        time.Duration  `json:"period"`
+	Granter sdk.AccAddress `json:"granter"`
+	Grantee sdk.AccAddress `json:"grantee"`
+	Grant   Grant          `json:"grant"`
 }
 
 type MsgRevokeAuthorization struct {
-	Granter              sdk.AccAddress `json:"granter"`
-	Grantee              sdk.AccAddress `json:"grantee"`
-	AuthorizationMsgType string         `json:"authorization_msg_type"`
+	Granter    sdk.AccAddress `json:"granter"`
+	Grantee    sdk.AccAddress `json:"grantee"`
+	MsgTypeUrl string         `json:"msg_type_url"`
 }
 
 type MsgExecAuthorized struct {
@@ -135,16 +123,69 @@ type MsgExecAuthorized struct {
 	Msgs    []sdk.Msg      `json:"msgs"`
 }
 
-type Authorization interface{}
+type Grant struct {
+	Authorization AuthorizationI `json:"authorization"`
+	Expiration    time.Time      `json:"expiration"`
+}
 
-var _ Authorization = (*SendAuthorization)(nil)
-var _ Authorization = (*GenericAuthorization)(nil)
+type AuthorizationI interface{}
+
+var _ AuthorizationI = (*SendAuthorization)(nil)
+var _ AuthorizationI = (*GenericAuthorization)(nil)
 
 type SendAuthorization struct {
 	SpendLimit sdk.Coins `json:"spend_limit"`
 }
 type GenericAuthorization struct {
-	GrantMsgType string `json:"grant_msg_type"`
+	Msg string `json:"msg"`
+}
+
+type MsgGrantAllowance struct {
+	// granter is the address of the user granting an allowance of their funds.
+	Granter sdk.AccAddress `json:"granter"`
+	// grantee is the address of the user being granted an allowance of another user's funds.
+	Grantee sdk.AccAddress `json:"grantee"`
+	// allowance can be any of basic and filtered fee allowance.
+	Allowance FeeAllowanceI `json:"allowance"`
+}
+
+type MsgRevokeAllowance struct {
+	// granter is the address of the user granting an allowance of their funds.
+	Granter sdk.AccAddress `json:"granter"`
+	// grantee is the address of the user being granted an allowance of another user's funds.
+	Grantee sdk.AccAddress `json:"grantee"`
+}
+
+type FeeAllowanceI interface{}
+
+type BasicAllowance struct {
+	SpendLimit sdk.Coins `json:"spend_limit"`
+	// expiration specifies an optional time when this allowance expires
+	Expiration *time.Time `json:"expiration,omitempty"`
+}
+
+type PeriodicAllowance struct {
+	// basic specifies a struct of `BasicAllowance`
+	Basic BasicAllowance `json:"basic"`
+	// period specifies the time duration in which period_spend_limit coins can
+	// be spent before that allowance is reset
+	Period time.Duration `json:"period"`
+	// period_spend_limit specifies the maximum number of coins that can be spent
+	// in the period
+	PeriodSpendLimit sdk.Coins `json:"period_spend_limit"`
+	// period_can_spend is the number of coins left to be spent before the period_reset time
+	PeriodCanSpend sdk.Coins `json:"period_can_spend"`
+	// period_reset is the time at which this period resets and a new one begins,
+	// it is calculated from the start time of the first transaction after the
+	// last period ended
+	PeriodReset time.Time `json:"period_reset"`
+}
+
+type AllowedMsgAllowance struct {
+	// allowance can be any of basic and filtered fee allowance.
+	Allowance FeeAllowanceI `json:"allowance"`
+	// allowed_messages are the messages for which the grantee has the access.
+	AllowedMessages []string `json:"allowed_messages,omitempty"`
 }
 
 const (
@@ -162,10 +203,16 @@ const (
 	TerraMsgInstantiateContract          = "wasm/MsgInstantiateContract"
 	TerraMsgExecuteContract              = "wasm/MsgExecuteContract"
 	TerraMsgMigrateContract              = "wasm/MsgMigrateContract"
-	TerraMsgUpdateContractOwner          = "wasm/MsgUpdateContractOwner"
+	TerraMsgUpdateContractAdmin          = "wasm/MsgUpdateContractAdmin"
+	TerraMsgClearContractAdmin           = "wasm/MsgClearContractAdmin"
 	TerraMsgGrantAuthorization           = "msgauth/MsgGrantAuthorization"
 	TerraMsgRevokeAuthorization          = "msgauth/MsgRevokeAuthorization"
 	TerraMsgExecAuthorized               = "msgauth/MsgExecAuthorized"
 	TerraSendAuthorization               = "msgauth/SendAuthorization"
 	TerraGenericAuthorization            = "msgauth/GenericAuthorization"
+	TerraMsgGrantAllowance               = "feegrant/MsgGrantAllowance"
+	TerraMsgRevokeAllowance              = "feegrant/MsgRevokeAllowance"
+	TerraBasicAllowance                  = "feegrant/BasicAllowance"
+	TerraPeriodicAllowance               = "feegrant/PeriodicAllowance"
+	TerraAllowedMsgAllowance             = "feegrant/AllowedMsgAllowance"
 )

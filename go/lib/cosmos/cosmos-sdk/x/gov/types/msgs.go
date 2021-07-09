@@ -23,3 +23,14 @@ type MsgVote struct {
 	Voter      sdk.AccAddress `json:"voter"`       //  address of the voter
 	Option     VoteOption     `json:"option"`      //  option from OptionSet chosen by the voter
 }
+
+type MsgVoteWeighted struct {
+	ProposalId uint64               `json:"proposal_id"`
+	Voter      sdk.AccAddress       `json:"voter"`
+	Options    []WeightedVoteOption `json:"options"`
+}
+
+type WeightedVoteOption struct {
+	Option VoteOption `json:"option"`
+	Weight sdk.Dec    `json:"weight"`
+}

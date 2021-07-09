@@ -5,8 +5,6 @@ import (
 )
 
 func RegisterCodec(codec *amino.Codec) {
-	codec.RegisterConcrete(MsgExchangeRateVote{}, TerraMsgExchangeRateVote, nil)
-	codec.RegisterConcrete(MsgExchangeRatePrevote{}, TerraMsgExchangeRatePrevote, nil)
 	codec.RegisterConcrete(MsgAggregateExchangeRateVote{}, TerraMsgAggregateExchangeRateVote, nil)
 	codec.RegisterConcrete(MsgAggregateExchangeRatePrevote{}, TerraMsgAggregateExchangeRatePrevote, nil)
 	codec.RegisterConcrete(MsgDelegateFeedConsent{}, TerraMsgDelegateFeedConsent, nil)
@@ -18,7 +16,8 @@ func RegisterCodec(codec *amino.Codec) {
 	codec.RegisterConcrete(MsgInstantiateContract{}, TerraMsgInstantiateContract, nil)
 	codec.RegisterConcrete(MsgExecuteContract{}, TerraMsgExecuteContract, nil)
 	codec.RegisterConcrete(MsgMigrateContract{}, TerraMsgMigrateContract, nil)
-	codec.RegisterConcrete(MsgUpdateContractOwner{}, TerraMsgUpdateContractOwner, nil)
+	codec.RegisterConcrete(MsgUpdateContractAdmin{}, TerraMsgUpdateContractAdmin, nil)
+	codec.RegisterConcrete(MsgClearContractAdmin{}, TerraMsgClearContractAdmin, nil)
 
 	codec.RegisterConcrete(&Schedule{}, TerraSchedule, nil)
 	codec.RegisterConcrete(&VestingSchedule{}, TerraVestingSchedule, nil)
@@ -30,5 +29,12 @@ func RegisterCodec(codec *amino.Codec) {
 	codec.RegisterConcrete(SendAuthorization{}, TerraSendAuthorization, nil)
 	codec.RegisterConcrete(GenericAuthorization{}, TerraGenericAuthorization, nil)
 
-	codec.RegisterInterface((*Authorization)(nil), nil)
+	codec.RegisterConcrete(BasicAllowance{}, TerraBasicAllowance, nil)
+	codec.RegisterConcrete(PeriodicAllowance{}, TerraPeriodicAllowance, nil)
+	codec.RegisterConcrete(AllowedMsgAllowance{}, TerraAllowedMsgAllowance, nil)
+	codec.RegisterConcrete(MsgGrantAllowance{}, TerraMsgGrantAllowance, nil)
+	codec.RegisterConcrete(MsgRevokeAllowance{}, TerraMsgRevokeAllowance, nil)
+
+	codec.RegisterInterface((*AuthorizationI)(nil), nil)
+	codec.RegisterInterface((*FeeAllowanceI)(nil), nil)
 }
