@@ -655,6 +655,26 @@ func EncodeSoftwareUpgradeProposal(bz []byte, lengthPrefixed bool) (bz2 []byte, 
 	return
 }
 
+func EncodeCommunityPoolSpendProposal(bz []byte, lengthPrefixed bool) (bz2 []byte, err error) {
+	var o gov.CommunityPoolSpendProposal
+	err = codec.UnmarshalJSON(bz, &o)
+	if err != nil {
+		return nil, err
+	}
+
+	if lengthPrefixed {
+		bz2, err = codec.MarshalBinaryLengthPrefixed(o)
+	} else {
+		bz2, err = codec.MarshalBinaryBare(o)
+	}
+
+	if err != nil {
+		return nil, err
+	}
+
+	return
+}
+
 func EncodeMsgIBCTransfer(bz []byte, lengthPrefixed bool) (bz2 []byte, err error) {
 	var o ibc.MsgIBCTransfer
 	err = codec.UnmarshalJSON(bz, &o)

@@ -54,7 +54,7 @@ func (p Proposals) String() string {
 }
 
 type (
-	ProposalQueue []uint64
+	ProposalQueue  []uint64
 	ProposalStatus byte
 )
 
@@ -159,8 +159,9 @@ func (tr TallyResult) String() string {
 }
 
 const (
-	ProposalTypeText            string = "Text"
-	ProposalTypeSoftwareUpgrade string = "SoftwareUpgrade"
+	ProposalTypeText               string = "Text"
+	ProposalTypeSoftwareUpgrade    string = "SoftwareUpgrade"
+	ProposalTypeCommunityPoolSpend string = "CommunityPoolSpend"
 )
 
 type TextProposal struct {
@@ -170,9 +171,9 @@ type TextProposal struct {
 
 var _ Content = TextProposal{}
 
-func (tp TextProposal) GetTitle() string         { return tp.Title }
-func (tp TextProposal) GetDescription() string   { return tp.Description }
-func (tp TextProposal) ProposalType() string     { return ProposalTypeText }
+func (tp TextProposal) GetTitle() string       { return tp.Title }
+func (tp TextProposal) GetDescription() string { return tp.Description }
+func (tp TextProposal) ProposalType() string   { return ProposalTypeText }
 
 func (tp TextProposal) String() string {
 	return fmt.Sprintf(`Text Proposal:
@@ -197,4 +198,26 @@ func (sup SoftwareUpgradeProposal) String() string {
   Title:       %s
   Description: %s
 `, sup.Title, sup.Description)
+}
+
+type CommunityPoolSpendProposal struct {
+	Title       string         `json:"title"`
+	Description string         `json:"description"`
+	Recipient   sdk.AccAddress `json:"recipient"`
+	Amount      sdk.Coins      `json:"amount"`
+}
+
+var _ Content = CommunityPoolSpendProposal{}
+
+func (cpsp CommunityPoolSpendProposal) GetTitle() string       { return cpsp.Title }
+func (cpsp CommunityPoolSpendProposal) GetDescription() string { return cpsp.Description }
+func (cpsp CommunityPoolSpendProposal) ProposalType() string   { return ProposalTypeCommunityPoolSpend }
+
+func (cpsp CommunityPoolSpendProposal) String() string {
+	return fmt.Sprintf(`Community Pool Spend Proposal:
+	Title:       %s
+	Description: %s
+	Recipient:   %s
+	Amount:      %s
+`, cpsp.Title, cpsp.Description, cpsp.Recipient, cpsp.Amount)
 }

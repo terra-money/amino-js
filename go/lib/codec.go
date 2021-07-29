@@ -89,6 +89,7 @@ func RegisterCodec(codec *amino.Codec) {
 	codec.RegisterConcrete(gov.MsgVote{}, TerraMsgVote, nil)
 	codec.RegisterConcrete(gov.TextProposal{}, TerraTextProposal, nil)
 	codec.RegisterConcrete(gov.SoftwareUpgradeProposal{}, TerraSoftwareUpgradeProposal, nil)
+	codec.RegisterConcrete(gov.CommunityPoolSpendProposal{}, TerraCommunityPoolSpendProposal, nil)
 
 	// cosmos/cosmos-sdk/x/ibc/codec.go
 

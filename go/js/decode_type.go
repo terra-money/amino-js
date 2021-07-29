@@ -252,6 +252,14 @@ func DecodeSoftwareUpgradeProposal(bz []byte, lengthPrefixed bool) (bz2 []byte) 
 	return
 }
 
+func DecodeCommunityPoolSpendProposal(bz []byte, lengthPrefixed bool) (bz2 []byte) {
+	bz2, err := src.DecodeCommunityPoolSpendProposal(bz, lengthPrefixed)
+	if err != nil {
+		panic(err)
+	}
+	return
+}
+
 func DecodeMsgIBCTransfer(bz []byte, lengthPrefixed bool) (bz2 []byte) {
 	bz2, err := src.DecodeMsgIBCTransfer(bz, lengthPrefixed)
 	if err != nil {

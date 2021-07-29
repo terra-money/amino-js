@@ -252,6 +252,14 @@ func EncodeSoftwareUpgradeProposal(bz []byte, lengthPrefixed bool) (bz2 []byte) 
 	return
 }
 
+func EncodeCommunityPoolSpendProposal(bz []byte, lengthPrefixed bool) (bz2 []byte) {
+	bz2, err := src.EncodeCommunityPoolSpendProposal(bz, lengthPrefixed)
+	if err != nil {
+		panic(err)
+	}
+	return
+}
+
 func EncodeMsgIBCTransfer(bz []byte, lengthPrefixed bool) (bz2 []byte) {
 	bz2, err := src.EncodeMsgIBCTransfer(bz, lengthPrefixed)
 	if err != nil {

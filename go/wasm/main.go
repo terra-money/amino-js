@@ -3,8 +3,9 @@
 package main
 
 import (
-	"github.com/cosmos/amino-js/go/src"
 	"syscall/js"
+
+	"github.com/cosmos/amino-js/go/src"
 )
 
 var done chan bool
@@ -95,6 +96,7 @@ func main() {
 		"encodeMsgVote":                        encodeDecodeType(src.EncodeMsgVote),
 		"encodeTextProposal":                   encodeDecodeType(src.EncodeTextProposal),
 		"encodeSoftwareUpgradeProposal":        encodeDecodeType(src.EncodeSoftwareUpgradeProposal),
+		"encodeCommunityPoolSpendProposal":     encodeDecodeType(src.EncodeCommunityPoolSpendProposal),
 		"encodeMsgIBCTransfer":                 encodeDecodeType(src.EncodeMsgIBCTransfer),
 		"encodeMsgIBCReceive":                  encodeDecodeType(src.EncodeMsgIBCReceive),
 		"encodeParameterChangeProposal":        encodeDecodeType(src.EncodeParameterChangeProposal),
@@ -199,6 +201,7 @@ func main() {
 		"decodeMsgVote":                        encodeDecodeType(src.DecodeMsgVote),
 		"decodeTextProposal":                   encodeDecodeType(src.DecodeTextProposal),
 		"decodeSoftwareUpgradeProposal":        encodeDecodeType(src.DecodeSoftwareUpgradeProposal),
+		"decodeCommunityPoolSpendProposal":     encodeDecodeType(src.DecodeCommunityPoolSpendProposal),
 		"decodeMsgIBCTransfer":                 encodeDecodeType(src.DecodeMsgIBCTransfer),
 		"decodeMsgIBCReceive":                  encodeDecodeType(src.DecodeMsgIBCReceive),
 		"decodeParameterChangeProposal":        encodeDecodeType(src.DecodeParameterChangeProposal),
